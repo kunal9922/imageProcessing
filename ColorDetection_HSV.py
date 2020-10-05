@@ -77,6 +77,9 @@ class UtilsCode:
 
 
 class DetectColor:
+	'''Detection of color using hsv color space
+	takes few args. image= 0:int for first camera or 1:int for second camera or path:str for specific path of data
+	 optional argument frameHeight:int  for set frame height and frameWidth:int for set frame witdh'''
 	def __init__(self, **input):
 		self.input = input
 		if "frameHeight" in input.keys() and "frameWidth" in input.keys():
