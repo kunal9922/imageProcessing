@@ -62,3 +62,6 @@ while cap.isOpened():
 	cv.imshow("Result", hstack)
 	if cv.waitKey(1) & 0xFF == ord("q"):
 		break
+
+# release memory video capture obj.
+cap.release()
