@@ -6,22 +6,27 @@ class UtilsCode:
 			HUE = color
 			saturation = how pure color is
 			value= how bright color is '''
-	def __init__(self, frameHeight=360, frameWidth=360):
-		self.frameHeight = frameHeight
-		self.frameWidth =frameWidth
+	def __init__(self, **frame):
 		cv.namedWindow("HSV color space")
-		cv.resizeWindow("HSV color space", self.frameWidth, self.frameHeight)
+		try:
+			self.frameHeight = frame['frameHeight']
+			self.frameWidth =frame['frameWidth']
+		except KeyError:
+			self.frameHeight = 360
+			self.frameWidth = 360
+		cv.resizeWindow("HSV color space", self.frameHeight, self.frameWidth)
 		# in HSV Hue is range from 0 - 360 but in open cv 0-179
-		cv.createTrackbar("hue min", "HSV color space", 0, 179, lambda: True)
-		cv.createTrackbar("hue max", "HSV color space", 179, 179, lambda: True)
-		cv.createTrackbar("sat min", "HSV color space", 0, 255, lambda: True)
-		cv.createTrackbar("sat max", "HSV color space", 255, 255, lambda: True)
-		cv.createTrackbar("val min", "HSV color space", 0, 255, lambda: True)
-		cv.createTrackbar("val max", "HSV color space", 255, 255, lambda: True)
+		cv.createTrackbar("hue min", "HSV color space", 0, 179, lambda x: print("hue min = ", x))
+		cv.createTrackbar("hue max", "HSV color space", 179, 179, lambda x: print("hue max = ", x))
+		cv.createTrackbar("sat min", "HSV color space", 0, 255, lambda x: print("sat min = ", x))
+		cv.createTrackbar("sat max", "HSV color space", 255, 255, lambda x: print("sat max = ", x))
+		cv.createTrackbar("val min", "HSV color space", 0, 255, lambda x: print("val min = ", x))
+		cv.createTrackbar("val max", "HSV color space", 255, 255, lambda x: print("val max = ", x))
 
 	def utilfunc(self,img):
 		# converting BLUE GREEN RED image to HUE SATURATION VALUE
-		img = cv.resize(img, (360, 360))
+		img = cv.resize(img, (self.frameHeight, self.frameWidth))
+
 		imgHSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
 		# get values from track bar
 
@@ -126,5 +131,5 @@ class DetectColor:
 			return img
 
 if __name__ == '__main__':
-	detectclr = DetectColor(frameHeight=360,frameWidth=360,image=r"C:\Users\kunal\Pictures\4K WALLPAPER\ios-13-stock-ipados-green-black-background-amoled-ipad-hd-1366x768-793.jpg")
+	detectclr = DetectColor(image=r"C:\Users\kunal\Pictures\4K WALLPAPER\ios-13-stock-ipados-green-black-background-amoled-ipad-hd-1366x768-793.jpg")
 
