@@ -66,9 +66,9 @@ class UtilsCode:
 	def detectImg(self, img):
 		'''takes a image to be detect'''
 		self.img = img
-
 		while True:
-			image = cv.imread(img)
+
+			image = cv.imread(self.img)
 			self.utilfunc(image)
 
 			if cv.waitKey(1) & 0xFF == ord("q"):
@@ -87,24 +87,22 @@ class DetectColor:
 			self.frameWidth = 0
 
 		'''0: means for first camera ,1 means second camera , path:str for specific data'''
-		if "image" in input["image"].keys():
+		if "image" in input.keys():
 			# from image
 			try:
-				call = UtilsCode(frameHeight=self.frameHeight, frameWidth=self.frameWidth)
+				call = UtilsCode(frameHeight=input["frameHeight"], frameWidth=input["frameWidth"])
 				img = self.readImg(self.input["image"])
 				call.detectImg(img)
-
 			except KeyError:
 				call = UtilsCode()
 				img = self.readImg(self.input["image"])
 				call.detectImg(img)
 		# for video capturing
-		elif "video" in input["video"].keys():
+		elif "video" in input.keys():
 			try:
 				call = UtilsCode(frameHeight=input["frameHeight"], frameWidth=input["frameWidth"])
 				cap = self.readVid(input["video"])
 				call.detectvid(cap)
-
 			except KeyError:
 				call = UtilsCode()
 				cap = self.readVid(input["video"])
@@ -117,14 +115,13 @@ class DetectColor:
 		return cap
 
 	def readImg(self, inp): # reading image from given input
-		img = cv.imread(inp)
+		img: None = cv.imread(inp)
 		if self.frameHeight and self.frameWidth:
 			resizeImg = cv.resize(img, (self.frameHeight, self.frameWidth))
 			return resizeImg
 		else:
 			return img
 
-
-
-
+if __name__ == '__main__':
+	detectclr = DetectColor(frameHeight=360,frameWidth=360,image=r"C:\Users\kunal\Pictures\4K WALLPAPER\ios-13-stock-ipados-green-black-background-amoled-ipad-hd-1366x768-793.jpg")
 
