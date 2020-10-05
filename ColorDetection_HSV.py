@@ -49,6 +49,7 @@ class UtilsCode:
 		cv.imshow("Result", hstack)
 
 
+
 	def detectvid(self, cap):
 		# capturing frames from video and find out the color using HSV
 		self.cap = cap
@@ -66,10 +67,9 @@ class UtilsCode:
 	def detectImg(self, img):
 		'''takes a image to be detect'''
 		self.img = img
-		while True:
 
-			image = cv.imread(self.img)
-			self.utilfunc(image)
+		while True:
+			self.utilfunc(self.img)
 
 			if cv.waitKey(1) & 0xFF == ord("q"):
 				break
