@@ -130,6 +130,7 @@ class DetectColor:
 		else:
 			return img
 
-if __name__ == '__main__':
-	detectclr = DetectColor(image=r"C:\Users\kunal\Pictures\4K WALLPAPER\ios-13-stock-ipados-green-black-background-amoled-ipad-hd-1366x768-793.jpg")
 
+if __name__ == '__main__':
+	imgPath = r"DataSet\\Animated_Forest.jpg"
+	detectclr = DetectColor(image=imgPath, frameHeight=420, frameWidth=420)  # 'q' for quit session
