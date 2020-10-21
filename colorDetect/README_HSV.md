@@ -11,7 +11,7 @@ saturation = how pure color is
 value= how bright color is
 ```
 
-![](DataSet/HSV_color_solid_cylinder.png)
+
 =======
 ![](DataSet/HSV_color_solid_cylinder.png)
 >>>>>>> origin/main
