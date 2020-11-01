@@ -25,6 +25,7 @@ class stichImage:
 			# opencv class for stitch images and make a paronama image
 			stitcher = cv.Stitcher.create()
 			(status, result) = stitcher.stitch(self.images) #  return two status = able to stitch image and result is paronama images
+                        cv.imshow("Result image ", result)
 			print(status, "", cv.STITCHER_OK )
 
 			if(status == cv.STITCHER_OK):
